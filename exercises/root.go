@@ -1,4 +1,4 @@
-package cmd
+package exercises
 
 import (
 	"fmt"
@@ -13,9 +13,9 @@ var Verbose bool
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "cryptopals",
-	Short: "Answers to the Cryptopals exercises",
+	Short: "Solutions to the Cryptopals exercises",
 	Long: `Working my way through the Cryptopal exercises
-Inconjunction with the other b1t tw1ddlers at $WORK.`,
+Along with the other b1t tw1ddlers at $WORK.`,
 }
 
 // Execute adds all child commands to the root command sets flags appropriately.
@@ -28,8 +28,6 @@ func Execute() {
 }
 
 func init() {
-	// Here you will define your flags and configuration settings.
 	// Persistent Flags will be global for your application.
-
 	RootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "verbose output")
 }

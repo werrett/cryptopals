@@ -1,4 +1,4 @@
-package cmd
+package exercises 
 
 import (
   "fmt"
@@ -13,7 +13,6 @@ func check(e error) {
 }
 
 // Generic helper functions for tests
-
 func expect(t *testing.T, a interface{}, b interface{}) {
 	if a != b {
 		t.Errorf(
@@ -30,8 +29,7 @@ func expectErr(t *testing.T, a interface{}) {
 	}
 }
 
-// output
-
+// Output helpers
 func log(msg string, args ...interface{}) {
   if Verbose {
     fmt.Printf(msg, args...)

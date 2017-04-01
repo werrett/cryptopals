@@ -1,4 +1,4 @@
-package cmd
+package exercises 
 
 import (
   "encoding/base64"
@@ -35,7 +35,7 @@ var ex1Cmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
     buf := ex1_solution(args[0])
-    print("b64'd: ", string(buf)) 
+    println(string(buf)) 
 	},
 }
 
