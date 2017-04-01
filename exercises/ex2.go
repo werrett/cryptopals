@@ -35,7 +35,7 @@ func ex2_solution(str1, str2 string) string {
   
   res, err := xor_fixed(buf1, buf2)
   check(err)
-  
+  log("raw result: %s\n", res)
   return hex_bytes(res)
 }
 
