@@ -3,12 +3,11 @@ package exercises
 import (
   "encoding/base64"
   "encoding/hex"
-  
 	"github.com/spf13/cobra"
 )
 
 // Convert from a hex string to bytes
-func unhex(src string) []byte {
+func unhex_string(src string) []byte {
   buf, err := hex.DecodeString(src)
   check(err)
   log("decoded hex: %s\n", buf)
@@ -24,7 +23,7 @@ func b64_bytes(src []byte) []byte {
 
 // Solution
 func ex1_solution(str string) []byte {
-  buf := unhex(str)
+  buf := unhex_string(str)
   return b64_bytes(buf) 
 }
 

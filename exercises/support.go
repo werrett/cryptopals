@@ -3,6 +3,7 @@ package exercises
 import (
   "fmt"
   "testing"
+  "errors"
 )
 
 // Check returned error value. Takes into account verbosity settings.
@@ -10,6 +11,11 @@ func check(e error) {
 	if e != nil {
 		panic(e) // TODO: should swap to log.Fatal(err)
 	}
+}
+
+// Return an error with a specfic message
+func newError(msg string) error {
+	return errors.New(msg)
 }
 
 // Generic helper functions for tests
