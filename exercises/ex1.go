@@ -22,9 +22,9 @@ func b64_bytes(src []byte) []byte {
 }
 
 // Solution
-func ex1_solution(str string) []byte {
+func ex1_solution(str string) string {
   buf := unhex_string(str)
-  return b64_bytes(buf) 
+  return string(b64_bytes(buf))
 }
 
 // Command definition and help
@@ -34,7 +34,7 @@ var ex1Cmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
     buf := ex1_solution(args[0])
-    println(string(buf)) 
+    println(buf) 
 	},
 }
 

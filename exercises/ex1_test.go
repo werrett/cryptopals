@@ -14,6 +14,6 @@ var ex1Tests = []struct {
 func Test_ex1_solution(t *testing.T) {
   for _, tt := range ex1Tests {
     actual := ex1_solution(tt.input)
-    expect(t, tt.expected, string(actual))
+    expect(t, tt.expected, actual)
   }
 }
