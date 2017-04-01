@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Global vars
 var Verbose bool
 
 // RootCmd represents the base command when called without any subcommands
@@ -15,9 +16,6 @@ var RootCmd = &cobra.Command{
 	Short: "Answers to the Cryptopals exercises",
 	Long: `Working my way through the Cryptopal exercises
 Inconjunction with the other b1t tw1ddlers at $WORK.`,
-// Uncomment the following line if your bare application
-// has an action associated with it:
-//	Run: func(cmd *cobra.Command, args []string) { },
 }
 
 // Execute adds all child commands to the root command sets flags appropriately.

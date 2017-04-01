@@ -7,23 +7,25 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Base64Bytes(src []byte) []byte {
-  buf := make([]byte, base64.StdEncoding.EncodedLen(len(src)))
-  base64.StdEncoding.Encode(buf, src)
-  return buf
-}
-
-func UnhexString(src string) []byte {
+// Convert from a hex string to bytes
+func unhex(src string) []byte {
   buf, err := hex.DecodeString(src)
   check(err)
   log("decoded hex: %s\n", buf)
   return buf
 }
 
-func ex1Solution(input string) string {
-  buf := UnhexString(input)
-  encoded := Base64Bytes(buf)
-  return string(encoded)
+// Base64 encode a byte array
+func b64_bytes(src []byte) []byte {
+  buf := make([]byte, base64.StdEncoding.EncodedLen(len(src)))
+  base64.StdEncoding.Encode(buf, src)
+  return buf
+}
+
+// Solution
+func ex1_solution(str string) []byte {
+  buf := unhex(str)
+  return b64_bytes(buf) 
 }
 
 // Command definition and help
@@ -32,10 +34,8 @@ var ex1Cmd = &cobra.Command{
 	Short: "Convert hex to base64",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		log("input: %s\n", args[0])
-    encoded := ex1Solution(args[0])
-
-    log("answer: %s\n", string(encoded))
+    buf := ex1_solution(args[0])
+    print("b64'd: ", string(buf)) 
 	},
 }
 
