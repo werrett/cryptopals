@@ -1,4 +1,4 @@
-package exercises 
+package challenges 
 
 import (
   "encoding/base64"
@@ -22,22 +22,22 @@ func b64_bytes(src []byte) []byte {
 }
 
 // Solution
-func ex1_solution(str string) string {
+func ch1_solution(str string) string {
   buf := unhex_string(str)
   return string(b64_bytes(buf))
 }
 
 // Command definition and help
-var ex1Cmd = &cobra.Command{
-	Use:   "ex1",
+var ch1Cmd = &cobra.Command{
+	Use:   "ch1",
 	Short: "Convert hex to base64",
 	Run: func(cmd *cobra.Command, args []string) {
 
-    buf := ex1_solution(args[0])
+    buf := ch1_solution(args[0])
     println(buf) 
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(ex1Cmd)
+	RootCmd.AddCommand(ch1Cmd)
 }

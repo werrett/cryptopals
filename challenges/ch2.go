@@ -1,4 +1,4 @@
-package exercises 
+package challenges 
 
 import (
   "encoding/hex"
@@ -29,7 +29,7 @@ func xor_fixed(buf1, buf2 []byte) ([]byte, error) {
 }
 
 // Solution
-func ex2_solution(str1, str2 string) string {
+func ch2_solution(str1, str2 string) string {
   buf1 := unhex_string(str1)
   buf2 := unhex_string(str2)
   
@@ -40,8 +40,8 @@ func ex2_solution(str1, str2 string) string {
 }
 
 // Command definition and help
-var ex2Cmd = &cobra.Command{
-	Use:   "ex2",
+var ch2Cmd = &cobra.Command{
+	Use:   "ch2",
 	Short: "XOR two, equal length, strings",
 	Run: func(cmd *cobra.Command, args []string) {
 
@@ -53,11 +53,11 @@ var ex2Cmd = &cobra.Command{
       panic( newError("Hex strings must be same length") )
     }
     
-    res := ex2_solution(args[0],args[1])
+    res := ch2_solution(args[0],args[1])
     println(res) 
 	},
 }
 
 func init() {
-	RootCmd.AddCommand(ex2Cmd)
+	RootCmd.AddCommand(ch2Cmd)
 }

@@ -1,7 +1,7 @@
 package main
 
-import "github.com/werrett/cryptopals/exercises"
+import "github.com/werrett/cryptopals/challenges"
 
 func main() {
-	exercises.Execute()
+	challenges.Execute()
 }
