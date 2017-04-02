@@ -1,9 +1,9 @@
-package challenges 
+package challenges
 
 import (
-  "fmt"
-  "testing"
-  "errors"
+	"errors"
+	"fmt"
+	"testing"
 )
 
 // Check returned error value. Takes into account verbosity settings.
@@ -37,7 +37,7 @@ func expectErr(t *testing.T, a interface{}) {
 
 // Output helpers
 func log(msg string, args ...interface{}) {
-  if Verbose {
-    fmt.Printf(msg, args...)
-  }
+	if Verbose {
+		fmt.Printf(msg, args...)
+	}
 }

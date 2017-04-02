@@ -5,18 +5,18 @@ import (
 )
 
 var ch2Tests = []struct {
-  str1  string
-  str2  string
-	expected string 
+	str1     string
+	str2     string
+	expected string
 }{
-  {"1c0111001f010100061a024b53535009181c",
-	 "686974207468652062756c6c277320657965",
-	 "746865206b696420646f6e277420706c6179"},
+	{"1c0111001f010100061a024b53535009181c",
+		"686974207468652062756c6c277320657965",
+		"746865206b696420646f6e277420706c6179"},
 }
 
 func Test_ch2Solution(t *testing.T) {
-  for _, tt := range ch2Tests {
-    actual := ch2Solution(tt.str1, tt.str2)
-    expect(t, tt.expected, actual)
-  }
+	for _, tt := range ch2Tests {
+		actual := ch2Solution(tt.str1, tt.str2)
+		expect(t, tt.expected, actual)
+	}
 }
