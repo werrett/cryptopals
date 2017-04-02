@@ -14,9 +14,9 @@ var ch2Tests = []struct {
 	 "746865206b696420646f6e277420706c6179"},
 }
 
-func Test_ch2_solution(t *testing.T) {
+func Test_ch2Solution(t *testing.T) {
   for _, tt := range ch2Tests {
-    actual := ch2_solution(tt.str1, tt.str2)
+    actual := ch2Solution(tt.str1, tt.str2)
     expect(t, tt.expected, actual)
   }
 }
