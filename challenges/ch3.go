@@ -6,13 +6,14 @@ import (
 )
 
 // XOR byte buffer with a repeating key
-// FIXME: Generalize this to a multiple byte key
-func xorBufferWithKey(buf []byte, key byte) ([]byte, error) {
+func xorBufferWithKey(buf []byte, key []byte) ([]byte, error) {
 
 	res := make([]byte, len(buf))
 
-	for i := range res {
-		res[i] = buf[i] ^ key
+	for i := 0; i < len(res); i += len(key) {
+		for j := range key {
+			res[i+j] = buf[i+j] ^ key[j]
+		}
 	}
 
 	return res, nil
@@ -57,7 +58,7 @@ func ch3Solution(input string) byte {
 	var secretKey byte
 
 	for k := byte('\x00'); k < 255; k++ {
-		res, err := xorBufferWithKey(buf, k)
+		res, err := xorBufferWithKey(buf, []byte{k})
 		check(err)
 
 		score := englishLetterCount(res)

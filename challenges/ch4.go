@@ -23,7 +23,7 @@ func ch4Solution(filePath string) ([]byte, byte) {
 		buf := unhexString(hexText)
 
 		for k := byte('\x00'); k < 255; k++ {
-			res, err := xorBufferWithKey(buf, k)
+			res, err := xorBufferWithKey(buf, []byte{k})
 			check(err)
 
 			score := englishLetterCount(res)
