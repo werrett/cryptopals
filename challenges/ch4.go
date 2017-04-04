@@ -40,8 +40,8 @@ func ch4Solution(filePath string) ([]byte, byte) {
 	check(err)
 
 	log(LogInfo, "high score: %d\n", highScore)
-	print("unxor'd text: %s\n", plainText)
 	print("key: %c (\\x%x)\n", secretKey, secretKey)
+	print("plaintext: %s\n", plainText)
 	return plainText, secretKey
 }
 

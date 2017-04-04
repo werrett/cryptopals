@@ -10,7 +10,7 @@ func xorBufferWithKey(buf []byte, key []byte) ([]byte, error) {
 	res := make([]byte, len(buf))
 
 	for i := 0; i < len(res); i += len(key) {
-		for j := range key {
+		for j := 0; j < len(key) && i+j < len(res); j++ {
 			res[i+j] = buf[i+j] ^ key[j]
 		}
 	}
@@ -49,7 +49,7 @@ func englishLetterCount(buf []byte) int {
 
 // Solution
 // XXX: Extra credit: Use channels to search for key in parallel
-func ch3Solution(input string) byte {
+func ch3Solution(input string) ([]byte, byte) {
 	buf := unhexString(input)
 
 	highScore := 0
@@ -71,9 +71,9 @@ func ch3Solution(input string) byte {
 	}
 
 	log(LogInfo, "high score: %d\n", highScore)
-	print("unxor'd text: %s\n", plainText)
 	print("key: %c (\\x%x)\n", secretKey, secretKey)
-	return secretKey
+	print("plaintext: %s\n", plainText)
+	return plainText, secretKey
 }
 
 // Command definition and help

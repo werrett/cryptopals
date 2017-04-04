@@ -1,8 +1,10 @@
 package challenges
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -26,11 +28,25 @@ func newError(msg string) error {
 
 // Generic helper functions for tests
 func expect(t *testing.T, a interface{}, b interface{}) {
-	if a != b {
-		t.Errorf(
-			"Expected %v - Got %v",
-			a, b,
-		)
+	val1 := reflect.ValueOf(a)
+	val2 := reflect.ValueOf(b)
+
+	if val1.Kind() != val2.Kind() {
+		t.Errorf("Values diff kind %v - Got %v", val1.Kind(), val2.Kind())
+	}
+
+	switch val1.Kind() {
+	case reflect.Slice:
+		if !bytes.Equal(val1.Bytes(), val2.Bytes()) {
+			t.Errorf("Arrays not equal %s - Got %s", a, b)
+		}
+	// FIXME: Not handling pointers
+
+	// Types: Int, Bool, Float32, Float64
+	default:
+		if a != b {
+			t.Errorf("Expected %v - Got %v", a, b)
+		}
 	}
 }
 
