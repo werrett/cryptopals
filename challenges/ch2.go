@@ -8,7 +8,7 @@ import (
 // Convert from a bytes to hex
 func hexBytes(src []byte) string {
 	str := hex.EncodeToString(src)
-	log("encoded hex: %s\n", str)
+	log(LogDebug, "encoded hex: %s\n", str)
 	return str
 }
 
@@ -35,8 +35,11 @@ func ch2Solution(str1, str2 string) string {
 
 	res, err := xorFixedBuffer(buf1, buf2)
 	check(err)
-	log("raw result: %s\n", res)
-	return hexBytes(res)
+	log(LogInfo, "xor result: %s\n", res)
+
+	hexRes := hexBytes(res)
+	print("hex result: %s\n", hexRes)
+	return hexRes
 }
 
 // Command definition and help
@@ -53,8 +56,7 @@ var ch2Cmd = &cobra.Command{
 			panic(newError("Hex strings must be same length"))
 		}
 
-		res := ch2Solution(args[0], args[1])
-		println(res)
+		ch2Solution(args[0], args[1])
 	},
 }
 

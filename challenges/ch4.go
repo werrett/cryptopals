@@ -2,7 +2,6 @@ package challenges
 
 import (
 	"bufio"
-	"fmt"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -27,8 +26,9 @@ func ch4Solution(filePath string) ([]byte, byte) {
 			check(err)
 
 			score := englishLetterCount(res)
+			log(LogDebug, "score: %2d decrypt: %s\n", score, res)
 			if score > highScore {
-				log("raw result: %2d %s\n", score, buf)
+				log(LogInfo, "high score: %2d decrypt: %s\n", score, res)
 				highScore = score
 				plainText = res
 				secretKey = k
@@ -39,7 +39,9 @@ func ch4Solution(filePath string) ([]byte, byte) {
 	err = scanner.Err()
 	check(err)
 
-	log("score: %d key: %x, plaintext: %s\n", highScore, secretKey, plainText)
+	log(LogInfo, "high score: %d\n", highScore)
+	print("unxor'd text: %s\n", plainText)
+	print("key: %c (\\x%x)\n", secretKey, secretKey)
 	return plainText, secretKey
 }
 
@@ -53,9 +55,7 @@ var ch4Cmd = &cobra.Command{
 			panic(newError("Must provide path to hex-encoded data"))
 		}
 
-		text, key := ch4Solution(args[0])
-		fmt.Printf("key: %c (\\x%x)\n", key, key)
-		fmt.Printf("plain text: %s", text)
+		ch4Solution(args[0])
 	},
 }
 

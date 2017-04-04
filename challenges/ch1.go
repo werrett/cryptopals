@@ -10,7 +10,7 @@ import (
 func unhexString(src string) []byte {
 	buf, err := hex.DecodeString(src)
 	check(err)
-	log("decoded hex: %s\n", buf)
+	log(LogDebug, "decoded hex: %s\n", buf)
 	return buf
 }
 
@@ -18,13 +18,18 @@ func unhexString(src string) []byte {
 func b64Bytes(src []byte) []byte {
 	buf := make([]byte, base64.StdEncoding.EncodedLen(len(src)))
 	base64.StdEncoding.Encode(buf, src)
+
+	log(LogDebug, "b64 bytesx: %s\n", buf)
 	return buf
 }
 
 // Solution
 func ch1Solution(str string) string {
 	buf := unhexString(str)
-	return string(b64Bytes(buf))
+	res := string(b64Bytes(buf))
+
+	print("result: %s", res)
+	return res
 }
 
 // Command definition and help
@@ -33,8 +38,7 @@ var ch1Cmd = &cobra.Command{
 	Short: "Convert hex to base64",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		buf := ch1Solution(args[0])
-		println(buf)
+		ch1Solution(args[0])
 	},
 }
 

@@ -6,6 +6,12 @@ import (
 	"testing"
 )
 
+// Message verbosity levels
+const (
+	LogInfo  = iota
+	LogDebug = iota
+)
+
 // Check returned error value. Takes into account verbosity settings.
 func check(e error) {
 	if e != nil {
@@ -36,8 +42,11 @@ func expectErr(t *testing.T, a interface{}) {
 }
 
 // Output helpers
-func log(msg string, args ...interface{}) {
-	if Verbose {
+func log(level int, msg string, args ...interface{}) {
+	if Verbose > level {
 		fmt.Printf(msg, args...)
 	}
+}
+func print(msg string, args ...interface{}) {
+	fmt.Printf(msg, args...)
 }

@@ -7,8 +7,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// Global vars
-var Verbose bool
+// Global log verbosity
+var Verbose int
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -29,5 +29,5 @@ func Execute() {
 
 func init() {
 	// Persistent Flags will be global for your application.
-	RootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "verbose output")
+	RootCmd.PersistentFlags().IntVarP(&Verbose, "verbose", "v", LogInfo, "verbose output")
 }

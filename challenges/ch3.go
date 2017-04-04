@@ -1,7 +1,6 @@
 package challenges
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 )
 
@@ -54,7 +53,7 @@ func ch3Solution(input string) byte {
 	buf := unhexString(input)
 
 	highScore := 0
-	var cipherText []byte
+	var plainText []byte
 	var secretKey byte
 
 	for k := byte('\x00'); k < 255; k++ {
@@ -62,15 +61,18 @@ func ch3Solution(input string) byte {
 		check(err)
 
 		score := englishLetterCount(res)
-		log("raw result: %2d %s\n", score, res)
+		log(LogDebug, "score: %2d decrypt: %s\n", score, res)
 		if score > highScore {
+			log(LogInfo, "new high score: %2d decrypt: %s\n", score, res)
 			highScore = score
-			cipherText = res
+			plainText = res
 			secretKey = k
 		}
 	}
 
-	fmt.Printf("raw answer: %d %s\n", highScore, cipherText)
+	log(LogInfo, "high score: %d\n", highScore)
+	print("unxor'd text: %s\n", plainText)
+	print("key: %c (\\x%x)\n", secretKey, secretKey)
 	return secretKey
 }
 
@@ -84,8 +86,7 @@ var ch3Cmd = &cobra.Command{
 			panic(newError("Must provide STRING in hex format"))
 		}
 
-		key := ch3Solution(args[0])
-		fmt.Printf("Secret key: %c (\\x%x)\n", key, key)
+		ch3Solution(args[0])
 	},
 }
 
